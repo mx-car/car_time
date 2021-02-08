@@ -15,10 +15,10 @@ namespace time {
  * Class to generate a constant loop cycle
  **/
 class CycleRate {
-    uint32_t last;
-    uint32_t next;
-    uint32_t duration; 
-public:
+    uint32_t last;             /// last trigger
+    uint32_t next;             /// next trigger
+    uint32_t duration;         /// duration between trigger in micros
+    public:
     /**
      * Constructer
      * @param ms cycle time;
@@ -30,6 +30,12 @@ public:
      * @returns returns zero if no cycle was passed otherwise the number of missed cycles;
      **/
     int passed();  
+
+    /**
+     * blocks unit the cyle starts or starts if the cycle passed already
+     * @returns delay to the cycle rate if negative the cycle was passed and positive the fnc waited
+     **/
+    int32_t wait();  
 };
 
 };
